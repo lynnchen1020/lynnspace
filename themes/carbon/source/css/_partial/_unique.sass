@@ -1,0 +1,155 @@
+#container
+  margin: auto
+  width: 60%
+  min-width: 18rem
+
+#banner
+  overflow: auto
+  #site-title, #site-subtitle
+    display: inline-block
+    vertical-align: middle
+  #site-title
+    font-size: 2.5em
+    font-weight: 700
+    margin-right: 1.5em
+  #site-subtitle
+    padding-left: 1em
+    /*border-left thin solid dimgray*/
+    font-size: small
+
+#content
+  text-autospace: ideograph-alpha
+  .meta
+    .article-title
+      font-weight: 500
+      margin-bottom: 0
+    .article-date
+      color: #a9a9a9
+  .extra
+    float: right
+    padding-left: 0.5rem
+    display: none
+  .abstract-list, .excerpt, .archive-list
+    padding: 0
+    color: #696969
+  #more
+    display: none
+  .article-content
+    line-height: 1.5
+    padding-top: 0.5rem
+    h2
+      font-weight: lighter
+      font-size: 1.3em
+    h3
+      font-weight: lighter
+      font-size: 1.15em
+    a
+      // padding-left: 0.3rem
+      // padding-right: 0.3rem
+      color: $link-color
+      &:hover
+        color: $link-hover-color
+      img
+        margin-left: -0.3rem
+    p
+      font-size: 14px
+      font-weight: normal
+      line-height: 1.6
+    blockquote
+      margin: 0.5rem 2rem
+      padding-left: 2rem
+      color: #696969
+      position: relative
+      display: block
+      footer
+        font-style: italic
+        color: #a9a9a9
+        font-size: 0.8em
+        margin-top: 0.5rem
+        display: block
+        cite
+          margin-left: 0.5em
+        &:before
+          content: '-'
+      &:before
+        display: block
+        content: open-quote
+        font-size: 5em
+        position: absolute
+        left: -1rem
+        top: -1rem
+        color: #7a7a7a
+    ol
+      padding-left: 1.5rem
+      list-style-type: decimal-leading-zero
+    ul
+      list-style-type: disc
+  figure.highlight
+    margin-right: 0
+    margin-left: 0
+  nav
+    clear: both
+    font-weight: lighter
+    text-align: center
+    margin-top: 50px
+    #left-navigator
+      max-width: 40%
+      float: left
+    #right-navigator
+      max-width: 40%
+      float: right
+
+#footer
+  padding-top: 3rem
+
+#footer-links
+  padding-left: 0.5rem
+  margin-top: 0
+  clear: right
+  overflow: hidden
+  list-style-type: none
+  float: right
+  ul
+    list-style-type: none
+  li
+    float: left
+    margin-left: 1rem
+  a
+    display: inline-block
+    color: #ddd
+  .zh
+    word-break-cjk: break-word
+    width: 1rem
+    letter-spacing: 1rem
+
+#search
+  float: left
+  width: 8em
+  display: inline-block
+  padding-right: 1em
+
+#search-input
+  padding-left: 0.3em
+  width: 6em
+  height: 1em
+  display: inline
+  border: none
+  &.hidden
+    display: none
+
+.categories
+  &-list
+    font-size: 1.2em
+  &-item
+    position: relative
+    margin-bottom: 16px
+    &:before
+      content: '\203A'
+      display: inline-block
+      position: absolute
+      left: -20px
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 2rem
+    > a
+      margin-right: 7px

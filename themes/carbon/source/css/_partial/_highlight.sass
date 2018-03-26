@@ -1,0 +1,126 @@
+// https//github.com/chriskempson/tomorrow-theme
+$highlight-background: #2d2d2d
+$highlight-current-line: #393939
+$highlight-selection: #515151
+$highlight-foreground: #cccccc
+$highlight-comment: #999999
+$highlight-red: #f2777a
+$highlight-orange: #f99157
+$highlight-yellow: #ffcc66
+$highlight-green: #99cc99
+$highlight-aqua: #66cccc
+$highlight-blue: #6699cc
+$highlight-purple: #cc99cc
+
+%code-block
+  background: $highlight-background
+  border-style: solid
+  border-width: 1px 0
+  overflow: auto
+  color: $highlight-foreground
+  padding: 0.5rem
+  vertical-align: baseline
+  /*line-height font-size * line-height*/
+
+%line-numbers
+  color: #666
+
+
+.highlight
+  @extend %code-block
+//   /*line-height font-size * line-height
+  .gutter pre
+    color: #666
+
+.gist .gist-file .gist-data .line-numbers
+  color: #666
+
+.highlight
+  .line
+    height: 1.5rem
+  pre
+    border: none
+    margin: 0
+    padding: 0
+  table
+    margin: 0
+    width: auto
+  td
+    border: none
+    padding: 0
+  figcaption
+    font-size: 0.85em
+    color: $highlight-comment
+    line-height: 1em
+    margin-bottom: 1em
+    a
+      float: right
+  .gutter pre
+    @extend %line-numbers
+    text-align: right
+    padding-right: 1rem
+    // /*height font-size * line-height
+
+.gist
+  border-style: solid
+  border-width: 1px 0
+  background: $highlight-background
+  .gist-file
+    border: none
+    margin: 0
+    .gist-data
+      background: none
+      border: none
+      .line-numbers
+        @extend %line-numbers
+        background: none
+        border: none
+        padding: 0 20px 0 0
+      .line-data
+        padding: 0 !important
+    .highlight
+      margin: 0
+      padding: 0
+      border: none
+    .gist-meta
+      background: $highlight-background
+      color: $highlight-comment
+      text-shadow: 0 0
+      padding: 0
+      margin-top: 1em
+      a
+        font-weight: normal
+      ahover
+        text-decoration: underline
+
+pre
+  .comment, .title
+    color: $highlight-comment
+  .variable, .attribute, .tag, .regexp, .ruby .constant
+    color: $highlight-red
+  .xml
+    .tag .title, .pi, .doctype
+      color: $highlight-red
+  .html .doctype
+    color: $highlight-red
+  .css
+    .id, .class, .pseudo
+      color: $highlight-red
+  .number, .preprocessor, .built_in, .literal, .params, .constant
+    color: $highlight-orange
+  .class, .ruby .class .title, .css .rules .attribute, .string, .value, .inheritance, .header, .ruby .symbol, .xml .cdata
+    color: $highlight-green
+  .css .hexcolor
+    color: $highlight-aqua
+  .function
+    color: $highlight-blue
+  .python
+    .decorator, .title
+      color: $highlight-blue
+  .ruby
+    .function .title, .title .keyword
+      color: $highlight-blue
+  .perl .sub, .javascript .title, .coffeescript .title
+    color: $highlight-blue
+  .keyword, .javascript .function
+    color: $highlight-purple

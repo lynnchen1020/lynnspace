@@ -1,0 +1,2 @@
+# About
+Less is more.
