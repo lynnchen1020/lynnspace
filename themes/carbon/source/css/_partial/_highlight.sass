@@ -2,7 +2,7 @@
 $highlight-background: #2d2d2d
 $highlight-current-line: #393939
 $highlight-selection: #515151
-$highlight-foreground: #cccccc
+$highlight-foreground: #aaaaaa
 $highlight-comment: #999999
 $highlight-red: #f2777a
 $highlight-orange: #f99157
@@ -13,12 +13,12 @@ $highlight-blue: #6699cc
 $highlight-purple: #cc99cc
 
 %code-block
-  background: $highlight-background
+  background: #000
   border-style: solid
   border-width: 1px 0
   overflow: auto
   color: $highlight-foreground
-  padding: 0.5rem
+  padding: 1rem
   vertical-align: baseline
   /*line-height font-size * line-height*/
 
@@ -37,11 +37,13 @@ $highlight-purple: #cc99cc
 
 .highlight
   .line
+    font-family: 'Courier New'
     height: 1.5rem
   pre
     border: none
     margin: 0
     padding: 0
+    font-size: 13px
   table
     margin: 0
     width: auto

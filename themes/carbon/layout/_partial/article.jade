@@ -1,6 +1,6 @@
 mixin article(article)
-  include meta
-  +meta(article)
+  include metaDefault
+  //- +meta(article)
   .article-content
     if article.photos
       .gallery

@@ -1,6 +1,6 @@
 #container
   margin: auto
-  width: 60%
+  width: 64%
   min-width: 18rem
 
 #banner
@@ -23,8 +23,10 @@
     .article-title
       font-weight: 500
       margin-bottom: 0
+      font-size: 1.4em
     .article-date
       color: #a9a9a9
+      font-size: 0.9em
   .extra
     float: right
     padding-left: 0.5rem
@@ -32,6 +34,10 @@
   .abstract-list, .excerpt, .archive-list
     padding: 0
     color: #696969
+  .abstract-list
+    margin-top: 40px
+    li:not(:last-child)
+      margin-bottom: 30px
   #more
     display: none
   .article-content
@@ -54,13 +60,17 @@
     p
       font-size: 14px
       font-weight: normal
-      line-height: 1.6
+      line-height: 1.5
+      margin: 1.3em 0
     blockquote
-      margin: 0.5rem 2rem
-      padding-left: 2rem
-      color: #696969
+      margin: 0.5rem 0
+      padding-left: 1rem
+      color: #000
       position: relative
       display: block
+      padding: 1rem 2.5rem
+      background-color: #eee
+      max-width: 600px
       footer
         font-style: italic
         color: #a9a9a9
@@ -74,10 +84,10 @@
       &:before
         display: block
         content: open-quote
-        font-size: 5em
+        font-size: 3em
         position: absolute
-        left: -1rem
-        top: -1rem
+        left: 0.5rem
+        top: 0.5rem
         color: #7a7a7a
     ol
       padding-left: 1.5rem
@@ -87,6 +97,7 @@
   figure.highlight
     margin-right: 0
     margin-left: 0
+    max-width: 650px
   nav
     clear: both
     font-weight: lighter
