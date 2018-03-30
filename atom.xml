@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Carbon</title>
+  
+  <subtitle>Learning, sharing, murmuring. Well, its all here.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://lynnchen1020.github.io/lynnspace/"/>
+  <updated>2018-03-30T13:01:48.000Z</updated>
+  <id>https://lynnchen1020.github.io/lynnspace/</id>
+  
+  <author>
+    <name>Lynn Chen</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flexbox-totally-understanding</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/12/15/Flexbox-totally-understanding/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/12/15/Flexbox-totally-understanding/</id>
+    <published>2017-12-15T04:11:46.000Z</published>
+    <updated>2018-03-30T13:01:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Flexbox-Totally-Understanding"><a href="#Flexbox-Totally-Understanding" class="headerlink" title="Flexbox Totally Understanding"></a>Flexbox Totally Understanding</h1><p>一直以來對 Flexbox 如何計算其 flex-grow, flex-basis, flex-shrink 有很大的疑惑，<br>今天有時間來好好研究一番，這篇 <a href="https://css-tricks.com/flex-grow-is-weird/" target="_blank" rel="noopener">css-trick 文章</a>一邊實作，並一邊核對與自己所理解的 flexbox 行為是否一致，<br>一步步帶我理解運作原理，廢話不多說，進入主題：</p><p><strong>flex-grow 是基於所剩寬度(parent寬度 - children總寬度)按比例分配給各children</strong><br><strong>將各子元素原始寬度+各剩餘寬度分配下來的數值，就是最終子元素寬度結果</strong></p><figure class="highlight plain"><figcaption><span>pug</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.main</span><br><span class="line">  .section Some Txt here...</span><br><span class="line">  .aside So many texts here here and here, more than section&apos;s content text!</span><br></pre></td></tr></table></figure><figure class="highlight plain"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.main</span><br><span class="line">  display: flex</span><br><span class="line">  width: 900px</span><br><span class="line"></span><br><span class="line">.section</span><br><span class="line">  flex-grow: 2</span><br><span class="line"></span><br><span class="line">.aside</span><br><span class="line">  flex-grow: 1</span><br></pre></td></tr></table></figure><blockquote><p><a href="https://codepen.io/matuzo/pen/ZQEWjg" target="_blank" rel="noopener">情況一</a>: 假設子元素有文字，子元素實際寬度則自動為文字內容最長寬度<br>parent width: 900px<br>section width: 99px<br>aside width: 623px<br>total flex-grow values: 3 -&gt; 子元素 flex-grow 加總值</p></blockquote><blockquote><p><strong>算出剩餘寬度</strong><br>剩餘寬度: 900 - 99 - 623 = 178px</p><p>section flex-grow 為 2<br>aside flex-grow 為 1</p></blockquote><blockquote><p><strong>將剩餘寬度分配給子元素</strong><br>section width: 178 x 2/3 = 118px<br>aside width: 178 x 1/3 = 60px</p></blockquote><blockquote><p><strong>各子元素原本寬度加上分配寬度 才是最後各子元素真實寬度</strong><br>section width: 99px + 118px = <b style="color: #369">217px</b><br>aside width: 623px + 60px = <b style="color: #369">683px</b></p></blockquote><figure class="highlight plain"><figcaption><span>pug</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.main</span><br><span class="line">  .section</span><br><span class="line">  .aside</span><br></pre></td></tr></table></figure><figure class="highlight plain"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.main</span><br><span class="line">  display: flex</span><br><span class="line">  max-width: 900px</span><br><span class="line"></span><br><span class="line">.section</span><br><span class="line">  flex-grow: 2</span><br><span class="line">  flex-basis: 400px</span><br><span class="line"></span><br><span class="line">.aside</span><br><span class="line">  flex-grow: 1</span><br><span class="line">  flex-basis: 200px</span><br></pre></td></tr></table></figure><blockquote><p><a href="https://codepen.io/matuzo/pen/ZQEWjg" target="_blank" rel="noopener">情況二</a>: 假設子元素’沒有’文字，但 flex-basis 自訂子元素寬度</p><p>parent width: 900px<br>section width: 400px (flex-basis value)<br>aside width: 200px (flex-basis value)<br>total flex-grow values: 3 -&gt; 子元素 flex-grow 加總值</p></blockquote><blockquote><p><strong>算出剩餘寬度</strong><br>剩餘寬度: 900 - 400 - 200 = 300px</p><p>section flex-grow 為 2<br>aside flex-grow 為 1</p><p><strong>將剩餘寬度分配給子元素</strong><br>section width: 300 x 2/3 = 200px<br>aside width: 300 x 1/3 = 100px</p><p><strong>各子元素原本寬度加上分配寬度 才是最後各子元素真實寬度</strong><br>section width: 400px + 200px = <b style="color: #369">600px</b><br>aside width: 200px + 100px = <b style="color: #369">300px</b></p></blockquote><figure class="highlight plain"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.main</span><br><span class="line">  display: flex</span><br><span class="line">  max-width: 900px</span><br><span class="line"></span><br><span class="line">.section, .aside</span><br><span class="line">  padding: 20px</span><br><span class="line">  margin: 15px</span><br><span class="line"></span><br><span class="line">.section</span><br><span class="line">  flex-grow: 2</span><br><span class="line">  flex-basis: 200px</span><br><span class="line"></span><br><span class="line">.aside</span><br><span class="line">  flex-grow: 1</span><br><span class="line">  flex-basis: 150px</span><br></pre></td></tr></table></figure><blockquote><p><a href="https://codepen.io/matuzo/pen/wMaeVO" target="_blank" rel="noopener">情況三</a>: 如果子元素有 margin, padding，記得在一開始計算剩餘寬度時就要減掉</p></blockquote><blockquote><p><strong>算出剩餘寬度(沒有 border-box 時只需減掉 margin )</strong><br>剩餘寬度: 900 - 200 - 150 - (15x4) = 490px</p><p><strong>將剩餘寬度分配給子元素</strong><br>section width: 490 x 2/3 = 326.666px<br>aside width: 490 x 1/3 = 163.333px</p><p><strong>各子元素原本寬度加上分配寬度 才是最後各子元素真實寬度</strong><br>section width: 200px + 326px = <b style="color: #369">526px</b><br>aside width: 150px + 163px = <b style="color: #369">313px</b></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Flexbox-Totally-Understanding&quot;&gt;&lt;a href=&quot;#Flexbox-Totally-Understanding&quot; class=&quot;headerlink&quot; title=&quot;Flexbox Totally Understanding&quot;&gt;&lt;/a
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+      <category term="flexbox" scheme="https://lynnchen1020.github.io/lynnspace/tags/flexbox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zoho Email Server</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/12/07/zoho-Email-server/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/12/07/zoho-Email-server/</id>
+    <published>2017-12-07T03:43:51.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Zoho-email-server-with-owned-domain-tutorial"><a href="#Zoho-email-server-with-owned-domain-tutorial" class="headerlink" title="Zoho email server with owned domain tutorial"></a>Zoho email server with owned domain tutorial</h1><p>It’s a tutorial about how to make your own domain become your own email address</p><p>a(<a href="https://sofree.cc/zoho-custom-domain-mail/" target="_blank" rel="noopener">https://sofree.cc/zoho-custom-domain-mail/</a>)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Zoho-email-server-with-owned-domain-tutorial&quot;&gt;&lt;a href=&quot;#Zoho-email-server-with-owned-domain-tutorial&quot; class=&quot;headerlink&quot; title=&quot;Zoho
+      
+    
+    </summary>
+    
+      <category term="tutorial" scheme="https://lynnchen1020.github.io/lynnspace/categories/tutorial/"/>
+    
+    
+      <category term="email" scheme="https://lynnchen1020.github.io/lynnspace/tags/email/"/>
+    
+      <category term="server" scheme="https://lynnchen1020.github.io/lynnspace/tags/server/"/>
+    
+      <category term="third party" scheme="https://lynnchen1020.github.io/lynnspace/tags/third-party/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS Concept</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/08/28/JS-this/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/08/28/JS-this/</id>
+    <published>2017-08-28T04:15:44.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JavaScript-this-的用法"><a href="#JavaScript-this-的用法" class="headerlink" title="JavaScript - this 的用法"></a>JavaScript - this 的用法</h1><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226850&amp;idx=2&amp;sn=b1c7c98d69eabcbeefcea1406294f864&amp;chksm=bd495b668a3ed270f6bd69109fccab46d7968c99c1ab45c2207d8723ee2fd6effe792204f94e&amp;mpshare=1&amp;scene=1&amp;srcid=0824lFYp7QUZoPqlVZFvqu9V#rd" target="_blank" rel="noopener">深入理解JavaScript中的this</a></p><p><a href="https://dev.to/arnavaggarwal/10-javascript-concepts-you-need-to-know-for-interviews" target="_blank" rel="noopener">10 JavaScript concepts you need to know for interviews</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;JavaScript-this-的用法&quot;&gt;&lt;a href=&quot;#JavaScript-this-的用法&quot; class=&quot;headerlink&quot; title=&quot;JavaScript - this 的用法&quot;&gt;&lt;/a&gt;JavaScript - this 的用法&lt;/h1&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="js" scheme="https://lynnchen1020.github.io/lynnspace/categories/JavaScript/"/>
+    
+    
+      <category term="js" scheme="https://lynnchen1020.github.io/lynnspace/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nas-tutorial</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/08/11/Nas-tutorial/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/08/11/Nas-tutorial/</id>
+    <published>2017-08-11T04:10:40.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="外部網路要連進家中-Nas-狀況說明"><a href="#外部網路要連進家中-Nas-狀況說明" class="headerlink" title="外部網路要連進家中 Nas 狀況說明"></a>外部網路要連進家中 Nas 狀況說明</h1><p>[基礎說明]<br>Local Area Network,LAN：區域網路，就是家裡的網路<br>Wide Area Network,WAN：廣域網路，就是外面的網路<br>Private IP：也常被叫做LAN IP，就是私人IP，諸如192.168.xx.xx,10.0.xx.xx<br>Public IP：也常被叫做WAN IP，就是公共IP，例如168.95.1.1<br>Port：通訊埠，電腦連線時的通訊窗口，又分為TCP與UDP兩大類。<br>&lt;來源: <a href="https://www.mobile01.com/topicdetail.php?f=494&amp;t=3758595&gt;" target="_blank" rel="noopener">https://www.mobile01.com/topicdetail.php?f=494&amp;t=3758595&gt;</a></p><ul><li><p>Nas 連分享器狀態下該怎麼做?<br>外部網路要取得 Nas 資料時，分享器會轉發至 Nas 被分配的內部IP，所以需要先透過分享器設定配給 Nas 的 內部虛擬IP 以及要轉接到的 port。<br>當你輸入網址時，分享器會將你導至 Nas 被設定的 內部虛擬IP 及 port</p></li><li><p>社區網路的狀況(例如:今網, 群健等)<br>由於社區網路的服務就是業者跟中華電信租用網路，再將這個網路用像是分享器的方式，分配給底下申請業者網路服務的用戶，如下列連接圖示意：<br>(中華電信 - 業者分享器 - 家中分享器 - Nas)<br>等於連兩次分享器才連接到 Nas, 如果要架站，必須請業者分享器開 port, 家中分享器也要開 port，再去 Nas 設定，請業者開 port 機率低，所以要架站還是直接向電信業者申請獨立的網路吧 (囧)</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;外部網路要連進家中-Nas-狀況說明&quot;&gt;&lt;a href=&quot;#外部網路要連進家中-Nas-狀況說明&quot; class=&quot;headerlink&quot; title=&quot;外部網路要連進家中 Nas 狀況說明&quot;&gt;&lt;/a&gt;外部網路要連進家中 Nas 狀況說明&lt;/h1&gt;&lt;p&gt;[基礎說明]
+      
+    
+    </summary>
+    
+      <category term="Nas" scheme="https://lynnchen1020.github.io/lynnspace/categories/Nas/"/>
+    
+    
+      <category term="Nas" scheme="https://lynnchen1020.github.io/lynnspace/tags/Nas/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Default W3C HTML4 spec</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/30/Default-W3C-HTML4-spec/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/06/30/Default-W3C-HTML4-spec/</id>
+    <published>2017-06-30T02:21:46.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Default-W3C-HTML4-spec"><a href="#Default-W3C-HTML4-spec" class="headerlink" title="Default W3C HTML4 spec"></a>Default W3C HTML4 spec</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">html, address,</span><br><span class="line">blockquote,</span><br><span class="line">body, dd, div,</span><br><span class="line">dl, dt, fieldset, form,</span><br><span class="line">frame, frameset,</span><br><span class="line">h1, h2, h3, h4,</span><br><span class="line">h5, h6, noframes,</span><br><span class="line">ol, p, ul, center,</span><br><span class="line">dir, hr, menu, pre   &#123; display: block; unicode-bidi: embed &#125;</span><br><span class="line">li              &#123; display: list-item &#125;</span><br><span class="line">head            &#123; display: none &#125;</span><br><span class="line">table           &#123; display: table &#125;</span><br><span class="line">tr              &#123; display: table-row &#125;</span><br><span class="line">thead           &#123; display: table-header-group &#125;</span><br><span class="line">tbody           &#123; display: table-row-group &#125;</span><br><span class="line">tfoot           &#123; display: table-footer-group &#125;</span><br><span class="line">col             &#123; display: table-column &#125;</span><br><span class="line">colgroup        &#123; display: table-column-group &#125;</span><br><span class="line">td, th          &#123; display: table-cell &#125;</span><br><span class="line">caption         &#123; display: table-caption &#125;</span><br><span class="line">th              &#123; font-weight: bolder; text-align: center &#125;</span><br><span class="line">caption         &#123; text-align: center &#125;</span><br><span class="line">body            &#123; margin: 8px &#125;</span><br><span class="line">h1              &#123; font-size: 2em; margin: .67em 0 &#125;</span><br><span class="line">h2              &#123; font-size: 1.5em; margin: .75em 0 &#125;</span><br><span class="line">h3              &#123; font-size: 1.17em; margin: .83em 0 &#125;</span><br><span class="line">h4, p,</span><br><span class="line">blockquote, ul,</span><br><span class="line">fieldset, form,</span><br><span class="line">ol, dl, dir,</span><br><span class="line">menu            &#123; margin: 1.12em 0 &#125;</span><br><span class="line">h5              &#123; font-size: .83em; margin: 1.5em 0 &#125;</span><br><span class="line">h6              &#123; font-size: .75em; margin: 1.67em 0 &#125;</span><br><span class="line">h1, h2, h3, h4,</span><br><span class="line">h5, h6, b,</span><br><span class="line">strong          &#123; font-weight: bolder &#125;</span><br><span class="line">blockquote      &#123; margin-left: 40px; margin-right: 40px &#125;</span><br><span class="line">i, cite, em,</span><br><span class="line">var, address    &#123; font-style: italic &#125;</span><br><span class="line">pre, tt, code,</span><br><span class="line">kbd, samp       &#123; font-family: monospace &#125;</span><br><span class="line">pre             &#123; white-space: pre &#125;</span><br><span class="line">button, textarea,</span><br><span class="line">input, select   &#123; display: inline-block &#125;</span><br><span class="line">big             &#123; font-size: 1.17em &#125;</span><br><span class="line">small, sub, sup &#123; font-size: .83em &#125;</span><br><span class="line">sub             &#123; vertical-align: sub &#125;</span><br><span class="line">sup             &#123; vertical-align: super &#125;</span><br><span class="line">table           &#123; border-spacing: 2px; &#125;</span><br><span class="line">thead, tbody,</span><br><span class="line">tfoot           &#123; vertical-align: middle &#125;</span><br><span class="line">td, th, tr      &#123; vertical-align: inherit &#125;</span><br><span class="line">s, strike, del  &#123; text-decoration: line-through &#125;</span><br><span class="line">hr              &#123; border: 1px inset &#125;</span><br><span class="line">ol, ul, dir,</span><br><span class="line">menu, dd        &#123; margin-left: 40px &#125;</span><br><span class="line">ol              &#123; list-style-type: decimal &#125;</span><br><span class="line">ol ul, ul ol,</span><br><span class="line">ul ul, ol ol    &#123; margin-top: 0; margin-bottom: 0 &#125;</span><br><span class="line">u, ins          &#123; text-decoration: underline &#125;</span><br><span class="line">br:before       &#123; content: &quot;\A&quot;; white-space: pre-line &#125;</span><br><span class="line">center          &#123; text-align: center &#125;</span><br><span class="line">:link, :visited &#123; text-decoration: underline &#125;</span><br><span class="line">:focus          &#123; outline: thin dotted invert &#125;</span><br><span class="line"></span><br><span class="line">/* Begin bidirectionality settings (do not change) */</span><br><span class="line">BDO[DIR=&quot;ltr&quot;]  &#123; direction: ltr; unicode-bidi: bidi-override &#125;</span><br><span class="line">BDO[DIR=&quot;rtl&quot;]  &#123; direction: rtl; unicode-bidi: bidi-override &#125;</span><br><span class="line"></span><br><span class="line">*[DIR=&quot;ltr&quot;]    &#123; direction: ltr; unicode-bidi: embed &#125;</span><br><span class="line">*[DIR=&quot;rtl&quot;]    &#123; direction: rtl; unicode-bidi: embed &#125;</span><br><span class="line"></span><br><span class="line">@media print &#123;</span><br><span class="line">  h1            &#123; page-break-before: always &#125;</span><br><span class="line">  h1, h2, h3,</span><br><span class="line">  h4, h5, h6    &#123; page-break-after: avoid &#125;</span><br><span class="line">  ul, ol, dl    &#123; page-break-before: avoid &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Default-W3C-HTML4-spec&quot;&gt;&lt;a href=&quot;#Default-W3C-HTML4-spec&quot; class=&quot;headerlink&quot; title=&quot;Default W3C HTML4 spec&quot;&gt;&lt;/a&gt;Default W3C HTML4 sp
+      
+    
+    </summary>
+    
+      <category term="HTML" scheme="https://lynnchen1020.github.io/lynnspace/categories/HTML/"/>
+    
+    
+      <category term="HTML" scheme="https://lynnchen1020.github.io/lynnspace/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS-scroller-methods</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/23/css-scroller-methods/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/06/23/css-scroller-methods/</id>
+    <published>2017-06-23T07:43:08.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="horizontal-methods-example"><a href="#horizontal-methods-example" class="headerlink" title="horizontal methods example"></a>horizontal methods example</h1><p><a href="http://www.websitecodetutorials.com/code/photo-galleries/css-horizontal-scroller.php" target="_blank" rel="noopener">http://www.websitecodetutorials.com/code/photo-galleries/css-horizontal-scroller.php</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;horizontal-methods-example&quot;&gt;&lt;a href=&quot;#horizontal-methods-example&quot; class=&quot;headerlink&quot; title=&quot;horizontal methods example&quot;&gt;&lt;/a&gt;horizont
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS-learning</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/09/css-learning/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/06/09/css-learning/</id>
+    <published>2017-06-09T09:05:50.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Self-Learning-Note"><a href="#Self-Learning-Note" class="headerlink" title="Self Learning Note"></a>Self Learning Note</h1><p>1. 在命名 css 時需先以是否為元件進行思考，如是元件，可依 BEM 命名規則: 元件/子元件/修飾符</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.menu               // component</span><br><span class="line">.menu--bgBlack      // modifier  --</span><br><span class="line">.menu-list          // child-component  -</span><br><span class="line">.menu-list--large   // child-component modifier --</span><br><span class="line">&#123;...&#125;</span><br></pre></td></tr></table></figure><p>2. 如要重複使用元件，例如 card 這類元件，但又因不同頁面要微調樣式，可以在頁面/父元素掛 class 再以階層方式調整，但必須放在 _card.sass 方便統一管理</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// default component css style</span><br><span class="line">// at page A</span><br><span class="line">.card</span><br><span class="line">.card-item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// use card in different page</span><br><span class="line">// at page B</span><br><span class="line">.pageB</span><br><span class="line">  .card</span><br><span class="line">  .card-item</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// same page different block</span><br><span class="line">  // promote</span><br><span class="line">  .promote</span><br><span class="line">    .card</span><br><span class="line">    .card-item</span><br><span class="line"></span><br><span class="line">  // price</span><br><span class="line">  .price</span><br><span class="line">    .card</span><br><span class="line">    .card-item</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Self-Learning-Note&quot;&gt;&lt;a href=&quot;#Self-Learning-Note&quot; class=&quot;headerlink&quot; title=&quot;Self Learning Note&quot;&gt;&lt;/a&gt;Self Learning Note&lt;/h1&gt;&lt;p&gt;1. 在命名
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS-viewport-unit</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/08/CSS-viewport-unit/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/06/08/CSS-viewport-unit/</id>
+    <published>2017-06-08T09:23:40.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="新的-CSS-尺寸單位"><a href="#新的-CSS-尺寸單位" class="headerlink" title="新的 CSS 尺寸單位"></a>新的 CSS 尺寸單位</h3><p>Viewport Width = vw  </p><p>共四種<br>vw / vh / vmin / vmax  </p><p>10vw = 10% -&gt; 看起來 vw 跟 % 好像沒差別<br>可以看做 em/rem vs %/vw 的關係  </p><p>vw 相當以視阜寬度為父元素</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;新的-CSS-尺寸單位&quot;&gt;&lt;a href=&quot;#新的-CSS-尺寸單位&quot; class=&quot;headerlink&quot; title=&quot;新的 CSS 尺寸單位&quot;&gt;&lt;/a&gt;新的 CSS 尺寸單位&lt;/h3&gt;&lt;p&gt;Viewport Width = vw  &lt;/p&gt;
+&lt;p&gt;共四種&lt;b
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS-vertical-align-methods</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/12/CSS-vertical-align-methods/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/05/12/CSS-vertical-align-methods/</id>
+    <published>2017-05-12T08:53:08.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="閱"><a href="#閱" class="headerlink" title="閱"></a>閱</h3><p>CSS 垂直置中方法<br><a href="http://hanasan.tian.yam.com/posts/35806444" target="_blank" rel="noopener">http://hanasan.tian.yam.com/posts/35806444</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;閱&quot;&gt;&lt;a href=&quot;#閱&quot; class=&quot;headerlink&quot; title=&quot;閱&quot;&gt;&lt;/a&gt;閱&lt;/h3&gt;&lt;p&gt;CSS 垂直置中方法&lt;br&gt;&lt;a href=&quot;http://hanasan.tian.yam.com/posts/35806444&quot; target=
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maintainable CSS</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/05/Maintainable-CSS/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/05/05/Maintainable-CSS/</id>
+    <published>2017-05-05T09:04:26.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="如何寫出可維護、具語意-CSS"><a href="#如何寫出可維護、具語意-CSS" class="headerlink" title="如何寫出可維護、具語意 CSS"></a>如何寫出可維護、具語意 CSS</h4><p><a href="http://maintainablecss.com/chapters/introduction/" target="_blank" rel="noopener">http://maintainablecss.com/chapters/introduction/</a></p><p><strong>Aurthor says about modular:</strong></p><blockquote><p> In a living room, we can consider the TV, the sofa and the wall art to be modules, all coming together to create a room.</p></blockquote><blockquote><p> In a website the header, registration form, shopping basket, article, product list, navigation and homepage promo can all be considered to be modules.</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;如何寫出可維護、具語意-CSS&quot;&gt;&lt;a href=&quot;#如何寫出可維護、具語意-CSS&quot; class=&quot;headerlink&quot; title=&quot;如何寫出可維護、具語意 CSS&quot;&gt;&lt;/a&gt;如何寫出可維護、具語意 CSS&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;http://ma
+      
+    
+    </summary>
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+    
+    
+      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>First Post</title>
+    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/05/First-Post/"/>
+    <id>https://lynnchen1020.github.io/lynnspace/2017/05/05/First-Post/</id>
+    <published>2017-05-05T07:27:56.000Z</published>
+    <updated>2018-03-28T13:53:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>誒 用這個主題真是不少坑啊 (踩</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;誒 用這個主題真是不少坑啊 (踩&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="閒話" scheme="https://lynnchen1020.github.io/lynnspace/categories/murmur/"/>
+    
+    
+  </entry>
+  
+</feed>
