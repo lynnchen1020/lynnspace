@@ -5,9 +5,9 @@
   <subtitle>Learning, sharing, murmuring. Well, its all here.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://lynnchen1020.github.io/lynnspace/"/>
+  <link href="https://lynnchen1020.github.io/"/>
   <updated>2018-03-30T13:01:48.000Z</updated>
-  <id>https://lynnchen1020.github.io/lynnspace/</id>
+  <id>https://lynnchen1020.github.io/</id>
   
   <author>
     <name>Lynn Chen</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Flexbox-totally-understanding</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/12/15/Flexbox-totally-understanding/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/12/15/Flexbox-totally-understanding/</id>
+    <link href="https://lynnchen1020.github.io/2017/12/15/Flexbox-totally-understanding/"/>
+    <id>https://lynnchen1020.github.io/2017/12/15/Flexbox-totally-understanding/</id>
     <published>2017-12-15T04:11:46.000Z</published>
     <updated>2018-03-30T13:01:48.000Z</updated>
     
@@ -34,19 +34,19 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
-      <category term="flexbox" scheme="https://lynnchen1020.github.io/lynnspace/tags/flexbox/"/>
+      <category term="flexbox" scheme="https://lynnchen1020.github.io/tags/flexbox/"/>
     
   </entry>
   
   <entry>
     <title>Zoho Email Server</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/12/07/zoho-Email-server/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/12/07/zoho-Email-server/</id>
+    <link href="https://lynnchen1020.github.io/2017/12/07/zoho-Email-server/"/>
+    <id>https://lynnchen1020.github.io/2017/12/07/zoho-Email-server/</id>
     <published>2017-12-07T03:43:51.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -61,21 +61,21 @@
     
     </summary>
     
-      <category term="tutorial" scheme="https://lynnchen1020.github.io/lynnspace/categories/tutorial/"/>
+      <category term="tutorial" scheme="https://lynnchen1020.github.io/categories/tutorial/"/>
     
     
-      <category term="email" scheme="https://lynnchen1020.github.io/lynnspace/tags/email/"/>
+      <category term="email" scheme="https://lynnchen1020.github.io/tags/email/"/>
     
-      <category term="server" scheme="https://lynnchen1020.github.io/lynnspace/tags/server/"/>
+      <category term="server" scheme="https://lynnchen1020.github.io/tags/server/"/>
     
-      <category term="third party" scheme="https://lynnchen1020.github.io/lynnspace/tags/third-party/"/>
+      <category term="third party" scheme="https://lynnchen1020.github.io/tags/third-party/"/>
     
   </entry>
   
   <entry>
     <title>JS Concept</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/08/28/JS-this/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/08/28/JS-this/</id>
+    <link href="https://lynnchen1020.github.io/2017/08/28/JS-this/"/>
+    <id>https://lynnchen1020.github.io/2017/08/28/JS-this/</id>
     <published>2017-08-28T04:15:44.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -90,17 +90,17 @@
     
     </summary>
     
-      <category term="js" scheme="https://lynnchen1020.github.io/lynnspace/categories/JavaScript/"/>
+      <category term="js" scheme="https://lynnchen1020.github.io/categories/JavaScript/"/>
     
     
-      <category term="js" scheme="https://lynnchen1020.github.io/lynnspace/tags/js/"/>
+      <category term="js" scheme="https://lynnchen1020.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Nas-tutorial</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/08/11/Nas-tutorial/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/08/11/Nas-tutorial/</id>
+    <link href="https://lynnchen1020.github.io/2017/08/11/Nas-tutorial/"/>
+    <id>https://lynnchen1020.github.io/2017/08/11/Nas-tutorial/</id>
     <published>2017-08-11T04:10:40.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -115,17 +115,17 @@
     
     </summary>
     
-      <category term="Nas" scheme="https://lynnchen1020.github.io/lynnspace/categories/Nas/"/>
+      <category term="Nas" scheme="https://lynnchen1020.github.io/categories/Nas/"/>
     
     
-      <category term="Nas" scheme="https://lynnchen1020.github.io/lynnspace/tags/Nas/"/>
+      <category term="Nas" scheme="https://lynnchen1020.github.io/tags/Nas/"/>
     
   </entry>
   
   <entry>
     <title>Default W3C HTML4 spec</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/30/Default-W3C-HTML4-spec/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/06/30/Default-W3C-HTML4-spec/</id>
+    <link href="https://lynnchen1020.github.io/2017/06/30/Default-W3C-HTML4-spec/"/>
+    <id>https://lynnchen1020.github.io/2017/06/30/Default-W3C-HTML4-spec/</id>
     <published>2017-06-30T02:21:46.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -140,17 +140,17 @@
     
     </summary>
     
-      <category term="HTML" scheme="https://lynnchen1020.github.io/lynnspace/categories/HTML/"/>
+      <category term="HTML" scheme="https://lynnchen1020.github.io/categories/HTML/"/>
     
     
-      <category term="HTML" scheme="https://lynnchen1020.github.io/lynnspace/tags/HTML/"/>
+      <category term="HTML" scheme="https://lynnchen1020.github.io/tags/HTML/"/>
     
   </entry>
   
   <entry>
     <title>CSS-scroller-methods</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/23/css-scroller-methods/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/06/23/css-scroller-methods/</id>
+    <link href="https://lynnchen1020.github.io/2017/06/23/css-scroller-methods/"/>
+    <id>https://lynnchen1020.github.io/2017/06/23/css-scroller-methods/</id>
     <published>2017-06-23T07:43:08.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -165,17 +165,17 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>CSS-learning</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/09/css-learning/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/06/09/css-learning/</id>
+    <link href="https://lynnchen1020.github.io/2017/06/09/css-learning/"/>
+    <id>https://lynnchen1020.github.io/2017/06/09/css-learning/</id>
     <published>2017-06-09T09:05:50.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -190,17 +190,17 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>CSS-viewport-unit</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/06/08/CSS-viewport-unit/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/06/08/CSS-viewport-unit/</id>
+    <link href="https://lynnchen1020.github.io/2017/06/08/CSS-viewport-unit/"/>
+    <id>https://lynnchen1020.github.io/2017/06/08/CSS-viewport-unit/</id>
     <published>2017-06-08T09:23:40.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -216,17 +216,17 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>CSS-vertical-align-methods</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/12/CSS-vertical-align-methods/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/05/12/CSS-vertical-align-methods/</id>
+    <link href="https://lynnchen1020.github.io/2017/05/12/CSS-vertical-align-methods/"/>
+    <id>https://lynnchen1020.github.io/2017/05/12/CSS-vertical-align-methods/</id>
     <published>2017-05-12T08:53:08.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -241,17 +241,17 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>Maintainable CSS</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/05/Maintainable-CSS/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/05/05/Maintainable-CSS/</id>
+    <link href="https://lynnchen1020.github.io/2017/05/05/Maintainable-CSS/"/>
+    <id>https://lynnchen1020.github.io/2017/05/05/Maintainable-CSS/</id>
     <published>2017-05-05T09:04:26.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -266,17 +266,17 @@
     
     </summary>
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/categories/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/categories/css/"/>
     
     
-      <category term="css" scheme="https://lynnchen1020.github.io/lynnspace/tags/css/"/>
+      <category term="css" scheme="https://lynnchen1020.github.io/tags/css/"/>
     
   </entry>
   
   <entry>
     <title>First Post</title>
-    <link href="https://lynnchen1020.github.io/lynnspace/2017/05/05/First-Post/"/>
-    <id>https://lynnchen1020.github.io/lynnspace/2017/05/05/First-Post/</id>
+    <link href="https://lynnchen1020.github.io/2017/05/05/First-Post/"/>
+    <id>https://lynnchen1020.github.io/2017/05/05/First-Post/</id>
     <published>2017-05-05T07:27:56.000Z</published>
     <updated>2018-03-28T13:53:37.000Z</updated>
     
@@ -292,7 +292,7 @@
     
     </summary>
     
-      <category term="閒話" scheme="https://lynnchen1020.github.io/lynnspace/categories/murmur/"/>
+      <category term="閒話" scheme="https://lynnchen1020.github.io/categories/murmur/"/>
     
     
   </entry>
